@@ -10,7 +10,7 @@ Visuals if needed
 Currently you just need to run the python code and it will ask you which character you want to check if the winning condition is met. 
 
 ## Support
-ale.araya1306@gmai.com
+ale.araya1306@gmail.com
 
 ## Road map
 Currently the code only checks if the winning condition is met. 
@@ -24,6 +24,7 @@ Currently the code only checks if the winning condition is met.
 
 ## Authors and acknowledgment
   * Alejandro Araya Jiménez (ale.araya1306@gmail.com)
+  * Mathias Valverde Valdelomar ()
 
 ## License
 This project is licensed under GPLv3+ (GNU General Public License version 3 or later).
