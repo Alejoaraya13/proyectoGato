@@ -11,6 +11,7 @@ Currently you just need to run the python code and it will ask you which charact
 
 ## Support
 ale.araya1306@gmail.com
+mathiasvalverde17ägmail.com
 
 ## Road map
 Currently the code only checks if the winning condition is met. 
@@ -24,10 +25,10 @@ Currently the code only checks if the winning condition is met.
 
 ## Authors and acknowledgment
   * Alejandro Araya Jiménez (ale.araya1306@gmail.com)
-  * Mathias Valverde Valdelomar ()
+  * Mathias Valverde Valdelomar (mathiasvalverde17ägmail.com)
 
 ## License
 This project is licensed under GPLv3+ (GNU General Public License version 3 or later).
 
 ## Project status
-Active (2024.june.16)
+Active (2024.june.21)
