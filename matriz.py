@@ -1,29 +1,41 @@
-def solicitar_coordenada():
+ficha_jugador = "x"
+
+def obtener_coordenadas():
     while True:
         try:
-            coord = input("Ingresa la coordenada en formato (i,j):")
-            # quitar espacios en blanco y parentesis
+            coord = input("Ingresa las coordenadas en formato (i, j): ")
+            # Eliminar espacios y parentesis
             coord = coord.strip().strip("()")
-            # Separar por coma, map es un comando que aplica la misma accion a cada elemento en este caso las coordenadas
-            # solo convierte las coordenadas en enteros para que la matriz entienda 
+            # Convertir a enteros
             i, j = map(int, coord.split(","))
-            return i, j
+            if 1 <= i <= 3 and 1 <= j <= 3:  # Ver que las coordenadas esten en el rango correcto
+                return i, j
+            else:
+                print("Las coordenadas deben estar en el rango de 1 a 3. Inténtelo de nuevo.")
         except ValueError:
-            print("Entrada inválida. Por favor, ingresa la coordenada en el formato correcto (i,j).")
+            print("La entrada es invalida. Debe ingresar las coordenadas en el formato correcto (i, j). Inténtelo de nuevo.")
 
-def actualizar_matriz(matriz, i, j, valor):
-    # Aqui compara las coordenadas con el largo y ancho de la matriz 
-    if 1 <= i <= len(matriz) and 1 <= j <= len(matriz[0]):
-        matriz[i-1][j-1] = valor
-    #Si no cumple da error y quiero que vuelva a pedir el input, (nada mas que todavia no se como)
-    else:
-        print("Coordenadas fuera de los límites de la matriz. Por favor, intenta nuevamente.")
-#Esto no se si puede servir para mostrar el resultado actualizado de la matriz
+
+def actualizar_matriz(matriz, i, j, ficha_jugador):
+    # Ajustar coordenadas para indices de matriz (0 a 2)
+    matriz[i-1][j-1] = ficha_jugador
 '''
-def imprimir_matriz(matriz):
-    for i in range(len(matriz)):
-        for j in range(len(matriz[0])):
-            print(matriz[i][j])
+# Ejemplo para ver si sirve
+matriz = [
+    ["","",""],
+    ["","",""],
+    ["","",""]
+]
+
+# Obtener coordenadas del jugador
+i, j = obtener_coordenadas()
+
+# Actualizar la matriz
+actualizar_matriz(matriz, i, j, ficha_jugador)
+
+# Imprimir la matriz para verificar la actualizacion
+for fila in matriz:
+    print(fila)
 '''
 
 #En esta funcion se busca las posiciones de todos los simbolos que se quieran encontrar
