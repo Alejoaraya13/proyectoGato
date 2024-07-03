@@ -13,7 +13,15 @@ def obtener_coordenadas():
         except ValueError:
             print("La entrada es invalida. Debe ingresar las coordenadas en el formato correcto (i, j). Inténtelo de nuevo.")
 
-
+# Función para verificar si una coordenada está libre y obtener coordenadas válidas
+def obtener_coordenadas_validas(matriz):
+    while True:
+        i, j = obtener_coordenadas()
+        if matriz[i-1][j-1] == "":  # Verifica si la coordenada está libre
+            return i, j
+        else:
+            print("Esa coordenada está ocupada. Inténtalo de nuevo.")
+            
 def actualizar_matriz(matriz, i, j, simbolo):
     # Ajustar coordenadas para indices de matriz (0 a 2)
     matriz[i-1][j-1] = simbolo
