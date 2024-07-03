@@ -1,5 +1,3 @@
-ficha_jugador = "x"
-
 def obtener_coordenadas():
     while True:
         try:
@@ -16,34 +14,16 @@ def obtener_coordenadas():
             print("La entrada es invalida. Debe ingresar las coordenadas en el formato correcto (i, j). Inténtelo de nuevo.")
 
 
-def actualizar_matriz(matriz, i, j, ficha_jugador):
+def actualizar_matriz(matriz, i, j, simbolo):
     # Ajustar coordenadas para indices de matriz (0 a 2)
-    matriz[i-1][j-1] = ficha_jugador
-'''
-# Ejemplo para ver si sirve
-matriz = [
-    ["","",""],
-    ["","",""],
-    ["","",""]
-]
-
-# Obtener coordenadas del jugador
-i, j = obtener_coordenadas()
-
-# Actualizar la matriz
-actualizar_matriz(matriz, i, j, ficha_jugador)
-
-# Imprimir la matriz para verificar la actualizacion
-for fila in matriz:
-    print(fila)
-'''
+    matriz[i-1][j-1] = simbolo
 
 #En esta funcion se busca las posiciones de todos los simbolos que se quieran encontrar
-def encontrarSimbolo(simbolo, matrix):
+def encontrarSimbolo(simbolo, matriz):
     posicionesSimbolo = []
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            if matrix[i][j] == simbolo:
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == simbolo:
                 posicionesSimbolo.append((i,j))
     return posicionesSimbolo
 
@@ -72,21 +52,77 @@ def checkJuegoTerminado(combinaciones):
             break
     return juegoTerminado
 
-#Esto es provicional, antes de implementar el sistema de inputs
-matrix = [["x","x","x"],["0","0","x"],["x","0","0"]]
-print(matrix[0], "\n", matrix[1], "\n", matrix[2])
-print("Diga el simbolo que quiere encontrar:")
-simbolo = input()
+juegoTerminado = False
 
-#Se define la variable que nos dice las posiciones del simbolo
-posicionesSimbolo = encontrarSimbolo(simbolo, matrix)
+matriz = [
+    ["","",""],
+    ["","",""],
+    ["","",""]
+]
 
-#Este if revisa si hay mas de 3 simbolos
-if len(posicionesSimbolo) >= 3:
-    combinaciones = creacionCombinaciones(posicionesSimbolo)
-juegoTerminado = checkJuegoTerminado(combinaciones)
+print('Bienvenido al juego: ¡Super Gato! Ingrese la ficha que el jugador 1 va a usar. (x/o)')
+simbolo = input().lower()
 
-#Basado en la funcion de arriba, si se cumple la condicion el juego termina
-if juegoTerminado == True:
-    print('El juego ha terminado')
+while simbolo != 'x' and simbolo != 'o':
+    print('El símbolo que ingresó está incorrecto, inténtelo de nuevo.')
+    simbolo = input().lower()
+
+print('Cuál jugador va a jugar primero? (1/2)')
+primerJugador = int(input())
+
+while primerJugador != 1 and primerJugador != 2:
+    print('El número que ingresó no está correcto, inténtelo de nuevo.')
+    primerJugador = int(input())
+
+if primerJugador == 2:
+    if simbolo == 'x':
+        simbolo = 'o'
+    else:
+        simbolo = 'x'
+
+#Enseñar matriz al jugador
+for fila in matriz:
+    print(fila)
+
+while juegoTerminado == False:
+    print('Es el turno del jugador:', primerJugador, 'con el símbolo:', simbolo)
     
+    # Obtener coordenadas del jugador
+    i, j = obtener_coordenadas()
+
+    # Actualizar la matriz
+    actualizar_matriz(matriz, i, j, simbolo)
+
+    #Se define la variable que nos dice las posiciones del simbolo
+    posicionesSimbolo = encontrarSimbolo(simbolo, matriz)
+
+    #Este if revisa si hay mas de 3 simbolos
+    #Si se cumple la condicion el juego termina
+    if len(posicionesSimbolo) >= 3:
+        combinaciones = creacionCombinaciones(posicionesSimbolo)
+        juegoTerminado = checkJuegoTerminado(combinaciones)
+        if juegoTerminado == True:
+            print('El juego ha terminado, el ganador es:', simbolo)
+    
+    #Checkea si ya no hay mas posiciones disponibles en el tablero
+    if len(posicionesSimbolo) == 5:
+        juegoTerminado == True
+        print('No hay más movimientos disponibles')
+    
+    #Printea la fila resultante
+    print('El resultado de su movimiento es:')
+    for fila in matriz:
+        print(fila)
+    
+    #Cambia el simbolo que se va a poner
+    if simbolo == 'x':
+        simbolo = 'o'
+    else:
+        simbolo = 'x'
+    
+    #Cambia el jugador
+    if primerJugador == 1:
+        primerJugador = 2
+    else:
+        primerJugador = 1
+
