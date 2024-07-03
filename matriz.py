@@ -133,4 +133,13 @@ while juegoTerminado == False:
         primerJugador = 2
     else:
         primerJugador = 1
+        
+        
+        
+        
 
+import random
+#lo que hace es bueno una lista primero que tenga todas las posibles convinaciones de la matriz y luego las discrimina con base a cuales no tienen simbolo
+def coordenada_aleatoria(matriz):
+    coordenadas_validas = [(i, j) for i in range(1, 4) for j in range(1, 4) if matriz[i-1][j-1] == ""]
+    return random.choice(coordenadas_validas)
