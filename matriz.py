@@ -62,7 +62,7 @@ def checkJuegoTerminado(combinaciones):
         elif combinaciones[x][0][1] == combinaciones[x][1][1] == combinaciones[x][2][1]:
             juegoTerminado = True
             break
-        elif combinaciones[x][0][1] != combinaciones[x][1][1] != combinaciones[x][2][1] and combinaciones[x][0][0] != combinaciones[x][1][0] != combinaciones[x][2][0]:
+        elif combinaciones[x][0][1] != combinaciones[x][1][1] and combinaciones[x][0][1] != combinaciones[x][2][1] and combinaciones[x][2][1] != combinaciones[x][1][1] and combinaciones[x][0][0] != combinaciones[x][1][0] and combinaciones[x][0][0] != combinaciones[x][2][0] and combinaciones[x][1][0] != combinaciones[x][2][0]:
             for y in range(3):
                 if combinaciones[x][y] == (1,0) or combinaciones[x][y] == (1,2):
                     juegoTerminado = False
