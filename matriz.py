@@ -272,7 +272,9 @@ while jugar_de_nuevo == 'si' or jugar_de_nuevo == 'sí':
         if jugar_de_nuevo == 'no':
             print("¡Muchas Gracias por jugar nuestro juego!")
             break
-
+        else:
+            print("La respuesta que ingresó es incorrecta, intentelo de nuevo.")
+            jugar_de_nuevo = input().lower()
     
 
 
