@@ -265,6 +265,13 @@ else:
             jugadorActual = 'Jugador'
         
          
-   
+# Pregunta si se quiere jugar de nuevo
+jugar_de_nuevo = input("¿Quieres jugar otra vez? (si/no): ").lower()
+if jugar_de_nuevo != "si" or jugar_de_nuevo != "sí":
+    print("¡Muchas Gracias por jugar nuestro juego!")
+
+    
+
+
 
 
