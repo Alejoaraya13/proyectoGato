@@ -233,6 +233,9 @@ while jugar_de_nuevo == 'si' or jugar_de_nuevo == 'sí':
                 # Actualizar la matriz
                 actualizar_matriz(matriz, i, j, simbolo)
                 
+                #Se define la variable que nos dice las posiciones del simbolo
+                posicionesSimbolo = encontrarSimbolo(simbolo, matriz)
+                
                 #Este if revisa si hay mas de 3 simbolos
                 #Si se cumple la condicion el juego termina
                 if len(posicionesSimbolo) >= 3:
