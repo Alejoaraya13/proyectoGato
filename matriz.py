@@ -265,13 +265,6 @@ else:
             jugadorActual = 'Jugador'
         
          
-        # Pregunta si se quiere jugar de nuevo
-        jugar_de_nuevo = input("¿Quieres jugar otra vez? (si/no): ").lower()
-        if jugar_de_nuevo != 'si'and jugar_de_nuevo != "sí":
-            print("¡Muchas Gracias por jugar nuestro juego!")
-            break
-
-# Llamar a la funcion para iniciar el juego
-jugar()
+   
 
 
