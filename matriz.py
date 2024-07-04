@@ -72,123 +72,59 @@ def checkJuegoTerminado(combinaciones):
             break
     return juegoTerminado
 
-#Variables importantes para el el juego
-juegoTerminado = False
+#Variable que permite el bucle que busca la rejugabilidad
+jugar_de_nuevo = 'si'
 
-matriz = [
-    ["","",""],
-    ["","",""],
-    ["","",""]
-]
+while jugar_de_nuevo == 'si' or jugar_de_nuevo == 'sí':
+    #Variables para el inicio del juego
+    juegoTerminado = False
+    
+    matriz = [['','',''],['','',''],['','','']]
 
-#Pregunta inicial, selección de modos de juego
-print('Bienvenid@ al juego: ¡Súper Gato! ¿Cuántos jugadores van a jugar? (1/2)')
-modoDeJuego = input()
-
-#Checkea que el input del modo de juego sea correcto
-while modoDeJuego != '1' and modoDeJuego != '2':
-    print('El modo de juego que ingresó es incorrecto, inténtelo de nuevo.')
+    #Pregunta inicial, selección de modos de juego
+    print('Bienvenid@ al juego: ¡Súper Gato! ¿Cuántos jugadores van a jugar? (1/2)')
     modoDeJuego = input()
 
-#Modo de 2 jugadores
-if modoDeJuego == '2':
-    #Selección del simbolo del jugador 1
-    print('Ingrese el símbolo que el jugador 1 va a usar. (x/o)')
-    simbolo = input().lower()
+    #Checkea que el input del modo de juego sea correcto
+    while modoDeJuego != '1' and modoDeJuego != '2':
+        print('El modo de juego que ingresó es incorrecto, inténtelo de nuevo.')
+        modoDeJuego = input()
 
-    #Checkea que el simbolo escrito sea correcto
-    while simbolo != 'x' and simbolo != 'o':
-        print('El símbolo que ingresó es incorrecto, inténtelo de nuevo.')
+    #Modo de 2 jugadores
+    if modoDeJuego == '2':
+        #Selección del simbolo del jugador 1
+        print('Ingrese el símbolo que el jugador 1 va a usar. (x/o)')
         simbolo = input().lower()
 
-    #Selección del jugador que va a ir primero
-    print('¿Cuál jugador va a jugar primero? (1/2)')
-    primerJugador = input()
+        #Checkea que el simbolo escrito sea correcto
+        while simbolo != 'x' and simbolo != 'o':
+            print('El símbolo que ingresó es incorrecto, inténtelo de nuevo.')
+            simbolo = input().lower()
 
-    #Checkea si el input sea válido
-    while primerJugador != '1' and primerJugador != '2':
-        print('El número que ingresó es icorrecto, inténtelo de nuevo.')
-        primerJugador = int(input())
+        #Selección del jugador que va a ir primero
+        print('¿Cuál jugador va a jugar primero? (1/2)')
+        primerJugador = input()
+            
+        #Checkea si el input sea válido
+        while primerJugador != '1' and primerJugador != '2':
+            print('El número que ingresó es icorrecto, inténtelo de nuevo.')
+            primerJugador = int(input())
 
-    #Cambia la ficha que se está jugando
-    if primerJugador == '2':
-        if simbolo == 'x':
-            simbolo = 'o'
-        else:
-            simbolo = 'x'
+        #Cambia la ficha que se está jugando
+        if primerJugador == '2':
+            if simbolo == 'x':
+                simbolo = 'o'
+            else:
+                simbolo = 'x'
 
-    #Enseñar matriz al jugador
-    for fila in matriz:
-        print(fila)
-
-    #Main loop del modo 2 jugadores
-    while juegoTerminado == False:
-        print('Es el turno del jugador:', primerJugador, 'con el símbolo:', simbolo)
-        
-        # Obtener coordenadas del jugador
-        i, j = obtener_coordenadas_validas(matriz)
-
-        # Actualizar la matriz
-        actualizar_matriz(matriz, i, j, simbolo)
-
-        #Se define la variable que nos dice las posiciones del simbolo
-        posicionesSimbolo = encontrarSimbolo(simbolo, matriz)
-
-
-        #Este if revisa si hay mas de 3 simbolos
-        #Si se cumple la condicion el juego termina
-        if len(posicionesSimbolo) >= 3:
-            combinaciones = creacionCombinaciones(posicionesSimbolo)
-            juegoTerminado = checkJuegoTerminado(combinaciones)
-            if juegoTerminado == True:
-                print('El juego ha terminado, el ganador es:', simbolo)
-
-        #Checkea si ya no hay mas posiciones disponibles en el tablero
-        if len(posicionesSimbolo) == 5 and juegoTerminado == False:
-            juegoTerminado = True
-            print('No hay más movimientos disponibles')
-        
-        #Printea la fila resultante
-        print('El resultado de su movimiento es:')
+        #Enseñar matriz al jugador
         for fila in matriz:
             print(fila)
-        
-        #Cambia el simbolo que se va a poner
-        if simbolo == 'x':
-            simbolo = 'o'
-        else:
-            simbolo = 'x'
-        
-        #Cambia el jugador
-        if primerJugador == '1':
-            primerJugador = '2'
-        else:
-            primerJugador = '1'
 
-#Modo de juego contra computadora
-else:
-    #Selección del simbolo del jugador
-    print('Ingrese el símbolo que el jugador va a usar. (x/o)')
-    simbolo = input().lower()
-
-    #Checkea que el símbolo escrito sea correcto
-    while simbolo != 'x' and simbolo != 'o':
-        print('El símbolo que ingresó es incorrecto, inténtelo de nuevo.')
-        simbolo = input().lower()
-        
-    #Enseñar matriz al jugador
-    for fila in matriz:
-        print(fila)
-        
-    #El primer jugador es el Jugador xd
-    jugadorActual = 'Jugador'
-
-    #Main loop del modo de juego contra la computadora
-    while juegoTerminado == False:
-        print('Es el turno de', jugadorActual, 'con el símbolo:', simbolo)
-      
-        #Turno del Jugador
-        if jugadorActual == 'Jugador':
+        #Main loop del modo 2 jugadores
+        while juegoTerminado == False:
+            print('Es el turno del jugador:', primerJugador, 'con el símbolo:', simbolo)
+            
             # Obtener coordenadas del jugador
             i, j = obtener_coordenadas_validas(matriz)
 
@@ -198,13 +134,14 @@ else:
             #Se define la variable que nos dice las posiciones del simbolo
             posicionesSimbolo = encontrarSimbolo(simbolo, matriz)
 
+
             #Este if revisa si hay mas de 3 simbolos
             #Si se cumple la condicion el juego termina
             if len(posicionesSimbolo) >= 3:
                 combinaciones = creacionCombinaciones(posicionesSimbolo)
                 juegoTerminado = checkJuegoTerminado(combinaciones)
                 if juegoTerminado == True:
-                    print('El juego ha terminado. ¡Has ganado!')
+                    print('El juego ha terminado, el ganador es:', simbolo)
 
             #Checkea si ya no hay mas posiciones disponibles en el tablero
             if len(posicionesSimbolo) == 5 and juegoTerminado == False:
@@ -215,60 +152,126 @@ else:
             print('El resultado de su movimiento es:')
             for fila in matriz:
                 print(fila)
- 
-        #Turno de la computadora  
-        else:
-            #Este es para que vean el resultado de su movimiento!
-            print('¿Desea continuar? (sí)')
-            esperaComputador = input().lower()
             
-            #Verificar si su respuesta es correcta
-            while esperaComputador != 'si' and esperaComputador != 'sí':
-                print('Su respuesta es incorrecta, ingrese de nuevo su respuesta.')
-                esperaComputador = input()
+            #Cambia el simbolo que se va a poner
+            if simbolo == 'x':
+                simbolo = 'o'
+            else:
+                simbolo = 'x'
             
-            #Seleccion de cordenadas para la computadora
-            i, j = coordenada_aleatoria(matriz)      
+            #Cambia el jugador
+            if primerJugador == '1':
+                primerJugador = '2'
+            else:
+                primerJugador = '1'
 
-            # Actualizar la matriz
-            actualizar_matriz(matriz, i, j, simbolo)
-            
-            #Este if revisa si hay mas de 3 simbolos
-            #Si se cumple la condicion el juego termina
-            if len(posicionesSimbolo) >= 3:
-                combinaciones = creacionCombinaciones(posicionesSimbolo)
-                juegoTerminado = checkJuegoTerminado(combinaciones)
-                if juegoTerminado == True:
-                    print('El juego ha terminado. ¡Ha ganado la computadora¡')
+    #Modo de juego contra computadora
+    else:
+        #Selección del simbolo del jugador
+        print('Ingrese el símbolo que el jugador va a usar. (x/o)')
+        simbolo = input().lower()
 
-            #Checkea si ya no hay mas posiciones disponibles en el tablero
-            if len(posicionesSimbolo) == 5 and juegoTerminado == False:
-                juegoTerminado = True
-                print('No hay más movimientos disponibles')
+        #Checkea que el símbolo escrito sea correcto
+        while simbolo != 'x' and simbolo != 'o':
+            print('El símbolo que ingresó es incorrecto, inténtelo de nuevo.')
+            simbolo = input().lower()
+
+        #Enseñar matriz al jugador
+        for fila in matriz:
+            print(fila)
             
-            #Printea la fila resultante
-            print('El resultado del movimiento de la computadora es:')
-            for fila in matriz:
-                print(fila)
+        #El primer jugador es el Jugador xd
+        jugadorActual = 'Jugador'
+
+        #Main loop del modo de juego contra la computadora
+        while juegoTerminado == False:
+            print('Es el turno de', jugadorActual, 'con el símbolo:', simbolo)
+          
+            #Turno del Jugador
+            if jugadorActual == 'Jugador':
+                # Obtener coordenadas del jugador
+                i, j = obtener_coordenadas_validas(matriz)
+
+                # Actualizar la matriz
+                actualizar_matriz(matriz, i, j, simbolo)
+
+                #Se define la variable que nos dice las posiciones del simbolo
+                posicionesSimbolo = encontrarSimbolo(simbolo, matriz)
+
+                #Este if revisa si hay mas de 3 simbolos
+                #Si se cumple la condicion el juego termina
+                if len(posicionesSimbolo) >= 3:
+                    combinaciones = creacionCombinaciones(posicionesSimbolo)
+                    juegoTerminado = checkJuegoTerminado(combinaciones)
+                    if juegoTerminado == True:
+                        print('El juego ha terminado. ¡Has ganado!')
+
+                #Checkea si ya no hay mas posiciones disponibles en el tablero
+                if len(posicionesSimbolo) == 5 and juegoTerminado == False:
+                    juegoTerminado = True
+                    print('No hay más movimientos disponibles')
                 
-        
-        #Cambia el simbolo que se va a poner
-        if simbolo == 'x':
-            simbolo = 'o'
-        else:
-            simbolo = 'x'
-        
-        #Cambia el jugador
-        if jugadorActual == 'Jugador':
-            jugadorActual = 'Computadora'
-        else:
-            jugadorActual = 'Jugador'
-        
-         
-# Pregunta si se quiere jugar de nuevo
-jugar_de_nuevo = input("¿Quieres jugar otra vez? (si/no): ").lower()
-if jugar_de_nuevo != "si" or jugar_de_nuevo != "sí":
-    print("¡Muchas Gracias por jugar nuestro juego!")
+                #Printea la fila resultante
+                print('El resultado de su movimiento es:')
+                for fila in matriz:
+                    print(fila)
+     
+            #Turno de la computadora  
+            else:
+                #Este es para que vean el resultado de su movimiento!
+                print('¿Desea continuar? (sí)')
+                esperaComputador = input().lower()
+                
+                #Verificar si su respuesta es correcta
+                while esperaComputador != 'si' and esperaComputador != 'sí':
+                    print('Su respuesta es incorrecta, ingrese de nuevo su respuesta.')
+                    esperaComputador = input()
+                
+                #Seleccion de cordenadas para la computadora
+                i, j = coordenada_aleatoria(matriz)      
+
+                # Actualizar la matriz
+                actualizar_matriz(matriz, i, j, simbolo)
+                
+                #Este if revisa si hay mas de 3 simbolos
+                #Si se cumple la condicion el juego termina
+                if len(posicionesSimbolo) >= 3:
+                    combinaciones = creacionCombinaciones(posicionesSimbolo)
+                    juegoTerminado = checkJuegoTerminado(combinaciones)
+                    if juegoTerminado == True:
+                        print('El juego ha terminado. ¡Ha ganado la computadora¡')
+
+                #Checkea si ya no hay mas posiciones disponibles en el tablero
+                if len(posicionesSimbolo) == 5 and juegoTerminado == False:
+                    juegoTerminado = True
+                    print('No hay más movimientos disponibles')
+                
+                #Printea la fila resultante
+                print('El resultado del movimiento de la computadora es:')
+                for fila in matriz:
+                    print(fila)
+                    
+            
+            #Cambia el simbolo que se va a poner
+            if simbolo == 'x':
+                simbolo = 'o'
+            else:
+                simbolo = 'x'
+            
+            #Cambia el jugador
+            if jugadorActual == 'Jugador':
+                jugadorActual = 'Computadora'
+            else:
+                jugadorActual = 'Jugador'
+            
+             
+    # Pregunta si se quiere jugar de nuevo
+    print("¿Quieres jugar otra vez? (sí/no): ")
+    jugar_de_nuevo = input().lower()
+    while jugar_de_nuevo != 'si' and jugar_de_nuevo != 'sí':
+        if jugar_de_nuevo == 'no':
+            print("¡Muchas Gracias por jugar nuestro juego!")
+            break
 
     
 
